@@ -41,8 +41,25 @@ function playGame() {
     }
 }
 
+
 /**
  * Interacts with buttons
  */
-document.querySelector('#rock').addEventListener('click', () => {console.log("Rock");
+document.addEventListener("DOMContentLoaded", () => {
+
+    if (document.querySelector('#rock')) {
+        document.querySelector('#rock').addEventListener("click", () => {
+           console.log("rock");
+        })
+    }
+    if (document.querySelector('#paper')) {
+        document.querySelector('#paper').addEventListener("click", () => {
+           console.log("paper");
+        })
+    }
+    if (document.querySelector('#scissor')) {
+        document.querySelector('#scissor').addEventListener("click", () => {
+           console.log("scissor");
+        })
+    }
 });
