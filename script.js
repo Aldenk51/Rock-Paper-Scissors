@@ -9,6 +9,7 @@ function getComputerChoice() {
     return "scissor"
 }
 
+asdf
 
 /**
  * Simulates a single round of Rock, Paper, Scissors
