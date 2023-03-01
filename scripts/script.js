@@ -40,3 +40,9 @@ function playGame() {
         console.log(playRound(playerSelection, getComputerChoice()));
     }
 }
+
+/**
+ * Interacts with buttons
+ */
+document.querySelector('#rock').addEventListener('click', () => {console.log("Rock");
+});
