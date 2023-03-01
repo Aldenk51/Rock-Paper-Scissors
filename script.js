@@ -9,6 +9,7 @@ function getComputerChoice() {
     return "scissor"
 }
 
+
 /**
  * Simulates a single round of Rock, Paper, Scissors
  * @param {string} playerSelection - The choice of the player
