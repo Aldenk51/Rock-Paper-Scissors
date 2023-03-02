@@ -28,38 +28,19 @@ function playRound(playerSelection, computerSelection) {
 
 
 /**
- * Starts the game and carries out 5 rounds of Rock, Paper, Scissors, printing out the results
- */
-function playGame() {
-    let playerSelection = "";
-    for(let i = 0; i < 5; i ++) {
-        playerSelection = prompt("Round " + (i+1) + ": Wat u choose? (Rock, Paper, or Scissor)").toLowerCase();
-        while(playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissor") {
-            playerSelection = prompt("Still round " + (i+1) + ": You made a type (Rock, Paper, or Scissor)").toLowerCase();
-        }
-        console.log(playRound(playerSelection, getComputerChoice()));
-    }
-}
-
-
-/**
  * Interacts with buttons
  */
 document.addEventListener("DOMContentLoaded", () => {
-
-    if (document.querySelector('#rock')) {
-        document.querySelector('#rock').addEventListener("click", () => {
-           console.log("rock");
-        })
-    }
-    if (document.querySelector('#paper')) {
-        document.querySelector('#paper').addEventListener("click", () => {
-           console.log("paper");
-        })
-    }
-    if (document.querySelector('#scissor')) {
-        document.querySelector('#scissor').addEventListener("click", () => {
-           console.log("scissor");
-        })
-    }
+    document.querySelector('#reload').addEventListener("click", () => {
+        location.reload();
+    })
+    document.querySelector('#rock').addEventListener("click", () => {
+       console.log(playRound("rock", getComputerChoice()));
+    })
+    document.querySelector('#paper').addEventListener("click", () => {
+       console.log(playRound("paper", getComputerChoice()));
+    })
+    document.querySelector('#scissor').addEventListener("click", () => {
+       console.log(playRound("scissor", getComputerChoice()));
+    })
 });
