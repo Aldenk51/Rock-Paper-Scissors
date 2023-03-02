@@ -21,8 +21,12 @@ function playRound(playerSelection, computerSelection) {
     console.log(computerSelection);
     if(playerSelection == computerSelection)return "It was a tie!"
     if ((playerSelection == "rock" && computerSelection == "scissor") || 
-        (playerSelection == "paper" && computerSelection == "rock") ||
-        (playerSelection == "scissor" && computerSelection == "paper"))  return "You win!";
+            (playerSelection == "paper" && computerSelection == "rock") ||
+            (playerSelection == "scissor" && computerSelection == "paper")) {
+        document.querySelector('#playerScore').textContent ++;
+        return "You win!";
+    }
+    document.querySelector('#compScore').textContent++;
     return "You lose!"
 }
 
