@@ -1,5 +1,5 @@
 /**
- * Returns Villain's choice of either Rock, Paper or Scissors using a randomly generated number x
+ * Returns Villains choice of either Rock, Paper or Scissors using a randomly generated number x
  * @returns {string} Rock if x<0.33, Paper if x<0.66, else Scissor 
  */
 function getComputerChoice() {
@@ -16,65 +16,51 @@ function getComputerChoice() {
  * @param {string} computerSelection - The choice of the villain
  * @returns {string} The result of the showdown
  */
-function winner(playerSelection, computerSelection) {
-    let playerScore = document.querySelector('#playerScore');
-    let compScore = document.querySelector('#compScore');
+function playRound(playerSelection, computerSelection) {
     console.log(playerSelection);
-    console.log(computerSelection);
-    let result = "";
-    if ((playerSelection == "rock" && computerSelection == "scissor") || 
+    console.log(computerSelection)
+    if(playerSelection == computerSelection) {
+        console.log("It was a tie!");
+    } else if ((playerSelection == "rock" && computerSelection == "scissor") || 
             (playerSelection == "paper" && computerSelection == "rock") ||
             (playerSelection == "scissor" && computerSelection == "paper")) {
-                playerScore.textContent++;
-        result = "You win!";
+        document.querySelector('#playerScore').textContent ++;
+        console.log("You win!");
     } else {
-        compScore.textContent++;
-        result = "You lose!"
+        document.querySelector('#compScore').textContent++;
+        console.log("You lose!");
     }
-    return result;
+    checkWinner();
 }
 
 
 /**
- * Starts a round of Rock, Paper, Scissors, and calls winner() to calculate the winner with choices.
+ * Checks the score to see if a winner has appeared
  */
-function playRound() {
-    let playerChoice = "", computerChoice = "";
-    do {
-        document.querySelector('#rock').addEventListener("click", () => {
-            playerChoice = "rock";
-        })
-        document.querySelector('#paper').addEventListener("click", () => {
-            playerChoice = "paper";
-        })
-        document.querySelector('#scissor').addEventListener("click", () => {
-            playerChoice = "scissor";
-        })
-        computerChoice = getComputerChoice();
-        console.log("test");
-    } while(playerChoice != computerChoice);
-    winner(playerChoice, computerChoice);
+function checkWinner() {
+    if(document.querySelector('#playerScore').textContent != 5 && document.querySelector('#compScore').textContent != 5) return;
+    
+    if (document.querySelector('#playerScore').textContent == 5) {
+        document.querySelector('#results').textContent = "Player wins!";
+    } else {
+        document.querySelector('#results').textContent = "Computer wins!";
+    }
+    document.querySelectorAll('button').forEach(button => {button.removeEventListener('click', playerChoice)});
     return;
-}
+}   
 
 
 /**
- * Interacts with buttons to start/restart game.
+ * Interacts with buttons
  */
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector('#start').addEventListener("click", () => {
-        document.querySelector('#start').textContent = "Restart"
-        document.querySelector('#result').textContent = "";
-        document.querySelector('#compScore').textContent = 0;
-        document.querySelector('#playerScore').textContent = 0;
-        console.clear();
-        for (let i = 0; i < 5; i ++) {
-            playRound();
-        }
-        if(playerScore.textContent == 5) {
-            document.querySelector('#result').textContent = "Player Wins!";
-        } else if(compScore.textContent == 5) {
-            document.querySelector('#result').textContent = "Computer Wins!";
-        }
-    })
+    document.querySelector('#reload').addEventListener("click", () => {
+        location.reload();
+    });
+    document.querySelectorAll('button').forEach(button => {button.addEventListener('click', playerChoice)});
 });
+
+function playerChoice(e) {
+    let playerSelection = e.target.id;
+    playRound(playerSelection, getComputerChoice());
+}
