@@ -18,17 +18,36 @@ function getComputerChoice() {
  */
 function playRound(playerSelection, computerSelection) {
     console.log(playerSelection);
-    console.log(computerSelection);
-    if(playerSelection == computerSelection)return "It was a tie!"
-    if ((playerSelection == "rock" && computerSelection == "scissor") || 
+    console.log(computerSelection)
+    if(playerSelection == computerSelection) {
+        console.log("It was a tie!");
+    } else if ((playerSelection == "rock" && computerSelection == "scissor") || 
             (playerSelection == "paper" && computerSelection == "rock") ||
             (playerSelection == "scissor" && computerSelection == "paper")) {
         document.querySelector('#playerScore').textContent ++;
-        return "You win!";
+        console.log("You win!");
+    } else {
+        document.querySelector('#compScore').textContent++;
+        console.log("You lose!");
     }
-    document.querySelector('#compScore').textContent++;
-    return "You lose!"
+    checkWinner();
 }
+
+
+/**
+ * Checks the score to see if a winner has appeared
+ */
+function checkWinner() {
+    if(document.querySelector('#playerScore').textContent != 5 && document.querySelector('#compScore').textContent != 5) return;
+    
+    if (document.querySelector('#playerScore').textContent == 5) {
+        document.querySelector('#results').textContent = "Player wins!";
+    } else {
+        document.querySelector('#results').textContent = "Computer wins!";
+    }
+    document.querySelectorAll('button').forEach(button => {button.removeEventListener('click', playerChoice)});
+    return;
+}   
 
 
 /**
@@ -37,14 +56,11 @@ function playRound(playerSelection, computerSelection) {
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelector('#reload').addEventListener("click", () => {
         location.reload();
-    })
-    document.querySelector('#rock').addEventListener("click", () => {
-       console.log(playRound("rock", getComputerChoice()));
-    })
-    document.querySelector('#paper').addEventListener("click", () => {
-       console.log(playRound("paper", getComputerChoice()));
-    })
-    document.querySelector('#scissor').addEventListener("click", () => {
-       console.log(playRound("scissor", getComputerChoice()));
-    })
+    });
+    document.querySelectorAll('button').forEach(button => {button.addEventListener('click', playerChoice)});
 });
+
+function playerChoice(e) {
+    let playerSelection = e.target.id;
+    playRound(playerSelection, getComputerChoice());
+}
