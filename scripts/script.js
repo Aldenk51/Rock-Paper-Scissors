@@ -11,7 +11,7 @@ function getComputerChoice() {
 
 
 /**
- * Simulates a single round of Rock, Paper, Scissors
+ * Simulates a single round of Rock, Paper, Scissors and updates scores
  * @param {string} playerSelection - The choice of the player
  * @param {string} computerSelection - The choice of the villain
  * @returns {string} The result of the showdown
