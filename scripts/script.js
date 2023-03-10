@@ -53,12 +53,10 @@ function checkWinner() {
 /**
  * Interacts with buttons
  */
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector('#reload').addEventListener("click", () => {
-        location.reload();
-    });
-    document.querySelectorAll('button').forEach(button => {button.addEventListener('click', playerChoice)});
+document.querySelector('#reload').addEventListener("click", () => {
+    location.reload();
 });
+document.querySelectorAll('button').forEach(button => {button.addEventListener('click', playerChoice)});
 
 function playerChoice(e) {
     let playerSelection = e.target.id;
